@@ -18,11 +18,12 @@ python3 -m http.server 8000
 
 ## Interaction du hero
 
-Quand la souris bouge sur le hero, une traînée de cartes apparaît sous le curseur, puis chaque
-carte s'efface : visuels des projets (clonés depuis la section Projets) et mots-clés
-colorés. En thème sombre, le nom passe en `mix-blend-mode: difference` au-dessus des cartes.
-Désactivé sur écrans tactiles et si « réduire les animations » est activé. Réglages dans
-`script.js`, section « Hero : traînée d'images » : mots-clés, taille du pool, espacement, durée.
+Quand la souris bouge sur le hero, une traînée de gélules apparaît sous le curseur, puis chaque
+gélule retombe en s'effaçant. Elles contiennent les mots-clés (Product Design, UX Research, Design Systems,
+Prototypage, UI Design, Stratégie produit). En thème sombre, le nom passe en `mix-blend-mode: difference`
+au-dessus des gélules. Désactivé sur écrans tactiles et si « réduire les animations » est activé.
+Réglages dans `script.js`, section « Hero : traînée de gélules » : mots-clés, couleurs, taille du pool,
+espacement, durée.
 
 ## Personnaliser
 

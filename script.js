@@ -51,64 +51,51 @@
     requestAnimationFrame(step);
   });
 
-  // ---------- Hero : traînée d'images au survol ----------
-  // Un pool de cartes (visuels des projets + mots-clés) est recyclé : une carte
-  // apparaît sous le curseur tous les `gap` pixels parcourus, puis s'efface.
+  // ---------- Hero : traînée de gélules au survol ----------
+  // Un pool de gélules (mots-clés) est recyclé : une gélule apparaît sous le
+  // curseur tous les `gap` pixels parcourus, puis retombe en s'effaçant.
   const hero = document.querySelector('.hero');
   const trail = document.querySelector('.hero__trail');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   if (trail && finePointer && !reduce) {
-    const medias = [...document.querySelectorAll('.project__media')];
     const words = [
-      ['Research', '#d4ff3f', '#0e0e0c'],
-      ['Design<br>System', '#7b6cff', '#f1ede4'],
-      ['UX / UI', '#ff5b2e', '#0e0e0c'],
-      ['Proto&shy;type', '#2e5bff', '#f1ede4'],
-      ['10+ ans', '#f1ede4', '#0e0e0c']
+      ['Product Design', '#d4ff3f', '#0e0e0c'],
+      ['UX Research', '#7b6cff', '#f1ede4'],
+      ['Design Systems', '#ff5b2e', '#0e0e0c'],
+      ['Prototypage', '#2e5bff', '#f1ede4'],
+      ['UI Design', 'var(--fg)', 'var(--bg)'],
+      ['Stratégie produit', null, null]
     ];
-    const variants = [];
-    medias.forEach((m, i) => {
-      variants.push(() => {
-        const card = document.createElement('div');
-        card.className = 'trail-card';
-        card.appendChild(m.cloneNode(true));
-        return card;
-      });
-      if (words[i]) {
-        const [label, bg, fg] = words[i];
-        variants.push(() => {
-          const card = document.createElement('div');
-          card.className = 'trail-card trail-card--word';
-          card.style.background = bg;
-          card.style.color = fg;
-          card.innerHTML = label;
-          return card;
-        });
-      }
+    const variants = words.map(([label, bg, fg]) => () => {
+      const pill = document.createElement('span');
+      pill.className = bg ? 'trail-pill' : 'trail-pill trail-pill--outline';
+      if (bg) { pill.style.background = bg; pill.style.color = fg; }
+      pill.textContent = label;
+      return pill;
     });
 
-    const POOL = 14;
+    const POOL = 18;
     const pool = Array.from({ length: POOL }, (_, i) => {
-      const card = variants[i % variants.length]();
-      trail.appendChild(card);
-      return card;
+      const pill = variants[i % variants.length]();
+      trail.appendChild(pill);
+      return pill;
     });
     let idx = 0, lastX = null, lastY = null, z = 1;
-    const gap = () => Math.max(window.innerWidth * 0.06, 70);
+    const gap = () => Math.max(window.innerWidth * 0.05, 60);
 
     const spawn = (x, y, dx, dy) => {
-      const card = pool[idx];
+      const pill = pool[idx];
       idx = (idx + 1) % POOL;
       const rect = trail.getBoundingClientRect();
-      const w = card.offsetWidth, h = card.offsetHeight;
+      const w = pill.offsetWidth, h = pill.offsetHeight;
       const px = x - rect.left - w / 2;
       const py = y - rect.top - h / 2;
-      const rot = (Math.random() - 0.5) * 16;
-      card.style.zIndex = z++;
-      card.getAnimations().forEach((a) => a.cancel());
+      const rot = (Math.random() - 0.5) * 24;
+      pill.style.zIndex = z++;
+      pill.getAnimations().forEach((a) => a.cancel());
       const expo = 'cubic-bezier(0.16, 1, 0.3, 1)';
-      card.animate([
+      pill.animate([
         { opacity: 1, transform: `translate(${px - dx * 0.6}px, ${py - dy * 0.6}px) scale(0.4) rotate(${rot * 2}deg)`, easing: expo },
         { opacity: 1, transform: `translate(${px}px, ${py}px) scale(1) rotate(${rot}deg)`, offset: 0.3 },
         { opacity: 1, transform: `translate(${px}px, ${py}px) scale(1) rotate(${rot}deg)`, offset: 0.62, easing: 'cubic-bezier(0.7, 0, 0.84, 0)' },
