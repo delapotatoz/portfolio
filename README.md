@@ -18,10 +18,11 @@ python3 -m http.server 8000
 
 ## Interaction du hero
 
-Au survol, chaque lettre du nom réagit à la distance du curseur grâce aux axes variables d'Archivo
-(largeur 125 → 62, graisse 800 → 200), pendant que le curseur devient un disque en inversion de couleurs.
-Désactivé sur écrans tactiles et si « réduire les animations » est activé. Réglages dans `script.js`
-(section « Hero : morphing variable »).
+Quand la souris bouge sur le hero, une traînée de cartes apparaît sous le curseur, puis chaque
+carte s'efface : visuels des projets (clonés depuis la section Projets) et mots-clés
+colorés. En thème sombre, le nom passe en `mix-blend-mode: difference` au-dessus des cartes.
+Désactivé sur écrans tactiles et si « réduire les animations » est activé. Réglages dans
+`script.js`, section « Hero : traînée d'images » : mots-clés, taille du pool, espacement, durée.
 
 ## Personnaliser
 

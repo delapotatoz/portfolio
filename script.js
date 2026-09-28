@@ -51,89 +51,81 @@
     requestAnimationFrame(step);
   });
 
-  // ---------- Hero : morphing variable au survol ----------
-  // Chaque lettre du nom varie en largeur (125 → 62) et en graisse (800 → 200)
-  // selon sa distance au curseur. Les centres sont mesurés « au repos » pour
-  // éviter que le changement de largeur ne fasse boucler le calcul.
+  // ---------- Hero : traînée d'images au survol ----------
+  // Un pool de cartes (visuels des projets + mots-clés) est recyclé : une carte
+  // apparaît sous le curseur tous les `gap` pixels parcourus, puis s'efface.
   const hero = document.querySelector('.hero');
-  const title = document.querySelector('.hero__title');
+  const trail = document.querySelector('.hero__trail');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  if (title && finePointer && !reduce) {
-    title.querySelectorAll('.line__inner').forEach((line) => {
-      const walker = document.createTreeWalker(line, NodeFilter.SHOW_TEXT);
-      const nodes = [];
-      while (walker.nextNode()) nodes.push(walker.currentNode);
-      nodes.forEach((node) => {
-        const frag = document.createDocumentFragment();
-        [...node.textContent].forEach((ch) => {
-          const span = document.createElement('span');
-          span.className = 'char';
-          span.textContent = ch;
-          frag.appendChild(span);
-        });
-        node.replaceWith(frag);
+  if (trail && finePointer && !reduce) {
+    const medias = [...document.querySelectorAll('.project__media')];
+    const words = [
+      ['Research', '#d4ff3f', '#0e0e0c'],
+      ['Design<br>System', '#7b6cff', '#f1ede4'],
+      ['UX / UI', '#ff5b2e', '#0e0e0c'],
+      ['Proto&shy;type', '#2e5bff', '#f1ede4'],
+      ['10+ ans', '#f1ede4', '#0e0e0c']
+    ];
+    const variants = [];
+    medias.forEach((m, i) => {
+      variants.push(() => {
+        const card = document.createElement('div');
+        card.className = 'trail-card';
+        card.appendChild(m.cloneNode(true));
+        return card;
       });
+      if (words[i]) {
+        const [label, bg, fg] = words[i];
+        variants.push(() => {
+          const card = document.createElement('div');
+          card.className = 'trail-card trail-card--word';
+          card.style.background = bg;
+          card.style.color = fg;
+          card.innerHTML = label;
+          return card;
+        });
+      }
     });
 
-    const chars = [...title.querySelectorAll('.char')].map((el) => ({
-      el, x: 0, y: 0, v: 0, target: 0, last: ''
-    }));
-    let centers = false;
-    const measure = () => {
-      chars.forEach((c) => { c.el.style.fontVariationSettings = ''; c.last = ''; });
-      chars.forEach((c) => {
-        const r = c.el.getBoundingClientRect();
-        c.x = r.left + r.width / 2 + window.scrollX;
-        c.y = r.top + r.height / 2 + window.scrollY;
-      });
-      centers = true;
-    };
-    // Mesure après l'animation d'entrée et le chargement des polices
-    const ready = Promise.all([document.fonts.ready, new Promise((r) => setTimeout(r, 1400))]);
-    ready.then(measure);
-    window.addEventListener('resize', () => { centers = false; ready.then(measure); });
+    const POOL = 14;
+    const pool = Array.from({ length: POOL }, (_, i) => {
+      const card = variants[i % variants.length]();
+      trail.appendChild(card);
+      return card;
+    });
+    let idx = 0, lastX = null, lastY = null, z = 1;
+    const gap = () => Math.max(window.innerWidth * 0.06, 70);
 
-    let mx = -1e4, my = -1e4, active = false, running = false;
-    const radius = () => Math.max(window.innerWidth * 0.16, 160);
-
-    const frame = () => {
-      let moving = false;
-      const R = radius();
-      chars.forEach((c) => {
-        if (active && centers) {
-          const d = Math.hypot(mx - (c.x - window.scrollX), my - (c.y - window.scrollY));
-          const t = Math.max(0, 1 - d / R);
-          c.target = t * t * (3 - 2 * t); // smoothstep
-        } else {
-          c.target = 0;
-        }
-        c.v += (c.target - c.v) * 0.14;
-        if (Math.abs(c.target - c.v) > 0.001) moving = true;
-        const wdth = (125 - c.v * 63).toFixed(1);
-        const wght = Math.round(800 - c.v * 600);
-        const val = `"wdth" ${wdth}, "wght" ${wght}`;
-        if (val !== c.last) { c.el.style.fontVariationSettings = val; c.last = val; }
-      });
-      if (moving) requestAnimationFrame(frame);
-      else running = false;
+    const spawn = (x, y, dx, dy) => {
+      const card = pool[idx];
+      idx = (idx + 1) % POOL;
+      const rect = trail.getBoundingClientRect();
+      const w = card.offsetWidth, h = card.offsetHeight;
+      const px = x - rect.left - w / 2;
+      const py = y - rect.top - h / 2;
+      const rot = (Math.random() - 0.5) * 16;
+      card.style.zIndex = z++;
+      card.getAnimations().forEach((a) => a.cancel());
+      const expo = 'cubic-bezier(0.16, 1, 0.3, 1)';
+      card.animate([
+        { opacity: 1, transform: `translate(${px - dx * 0.6}px, ${py - dy * 0.6}px) scale(0.4) rotate(${rot * 2}deg)`, easing: expo },
+        { opacity: 1, transform: `translate(${px}px, ${py}px) scale(1) rotate(${rot}deg)`, offset: 0.3 },
+        { opacity: 1, transform: `translate(${px}px, ${py}px) scale(1) rotate(${rot}deg)`, offset: 0.62, easing: 'cubic-bezier(0.7, 0, 0.84, 0)' },
+        { opacity: 0, transform: `translate(${px}px, ${py + 80}px) scale(0.6) rotate(${rot * 0.5}deg)` }
+      ], { duration: 1500, fill: 'forwards' });
     };
-    const kick = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
 
     hero.classList.add('has-pointer');
     hero.addEventListener('mousemove', (e) => {
-      mx = e.clientX; my = e.clientY; active = true; kick();
-    });
-    hero.addEventListener('mouseleave', () => { active = false; kick(); });
-    title.addEventListener('mouseenter', () => {
-      title.classList.add('is-live');
+      if (lastX === null) { lastX = e.clientX; lastY = e.clientY; return; }
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.hypot(dx, dy) < gap()) return;
+      spawn(e.clientX, e.clientY, dx, dy);
+      lastX = e.clientX; lastY = e.clientY;
       hero.classList.add('is-touched');
-      document.querySelector('.cursor').classList.add('is-hero');
     });
-    title.addEventListener('mouseleave', () => {
-      title.classList.remove('is-live');
-      document.querySelector('.cursor').classList.remove('is-hero');
-    });
+    hero.addEventListener('mouseleave', () => { lastX = lastY = null; });
   }
 
   // ---------- Curseur ----------
