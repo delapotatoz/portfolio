@@ -12,9 +12,8 @@ python3 -m http.server 8000
 
 ## Typographie
 
-- **Titres** : pile `"WT Gothic", "Anton"`. WT Gothic est une police commerciale : déposez votre fichier
-  sous `fonts/WTGothic.woff2` et décommentez le bloc `@font-face` en haut de `styles.css`.
-  En attendant, Anton (gothique condensée, OFL) est utilisée.
+- **Titres** : [Archivo](https://fonts.google.com/specimen/Archivo) (OFL), police variable réglée en largeur 125
+  (`font-stretch: 125%`) et graisse 800 — modifiable via `--display-weight` dans `styles.css`.
 - **Textes** : JetBrains Mono (OFL), auto-hébergée dans `fonts/`.
 
 ## Personnaliser
