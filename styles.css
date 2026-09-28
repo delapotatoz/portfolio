@@ -113,6 +113,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .cursor.is-hover { width: 88px; height: 88px; mix-blend-mode: normal; }
 .cursor.is-hover .cursor__label { opacity: 1; }
+/* Au-dessus du nom : disque large en inversion de couleurs */
+.cursor.is-hero {
+  width: clamp(120px, 14vw, 220px); height: clamp(120px, 14vw, 220px);
+  background: #fff;
+  mix-blend-mode: difference;
+}
 @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
 /* ---------- Titres : Archivo expanded ---------- */
@@ -227,6 +233,24 @@ mark {
 .hero__title .line--indent { padding-left: 12vw; }
 .hero__title em { font-style: normal; color: var(--muted); }
 .hero__title .accent { color: var(--accent); }
+
+/* Morphing variable : chaque lettre réagit à la distance du curseur */
+.hero__title .char {
+  display: inline-block;
+  font-variation-settings: "wdth" 125, "wght" 800;
+  will-change: font-variation-settings;
+}
+.hero__title.is-live { cursor: none; }
+.hero__hint {
+  display: inline-flex; align-items: center; gap: 8px;
+  opacity: 0; transition: opacity 0.6s var(--ease);
+}
+.hero__hint::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+.hero.has-pointer .hero__hint { opacity: 1; }
+.hero.is-touched .hero__hint { opacity: 0; }
 @keyframes rise { to { transform: translateY(0); } }
 
 .hero__bottom {

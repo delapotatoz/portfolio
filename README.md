@@ -4,7 +4,7 @@ Portfolio de Product Designer (Lille, +10 ans). Site statique : HTML, CSS, JS va
 
 ## Lancer en local
 
-Ouvrir `index.html` dans un navigateur, ou :
+Servir le dossier en HTTP (recommandé : les polices locales ne se chargent pas toujours en `file://`) :
 
 ```bash
 python3 -m http.server 8000
@@ -15,6 +15,13 @@ python3 -m http.server 8000
 - **Titres** : [Archivo](https://fonts.google.com/specimen/Archivo) (OFL), police variable réglée en largeur 125
   (`font-stretch: 125%`) et graisse 800 — modifiable via `--display-weight` dans `styles.css`.
 - **Textes** : JetBrains Mono (OFL), auto-hébergée dans `fonts/`.
+
+## Interaction du hero
+
+Au survol, chaque lettre du nom réagit à la distance du curseur grâce aux axes variables d'Archivo
+(largeur 125 → 62, graisse 800 → 200), pendant que le curseur devient un disque en inversion de couleurs.
+Désactivé sur écrans tactiles et si « réduire les animations » est activé. Réglages dans `script.js`
+(section « Hero : morphing variable »).
 
 ## Personnaliser
 
