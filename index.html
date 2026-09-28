@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matthieu Delapoterie — Product Designer</title>
+  <meta name="description" content="Matthieu Delapoterie, Product Designer basé à Lille. Plus de 10 ans à concevoir des produits numériques utiles, clairs et désirables.">
+  <meta name="theme-color" content="#0e0e0c">
+
+  <meta property="og:title" content="Matthieu Delapoterie — Product Designer">
+  <meta property="og:description" content="Product Designer basé à Lille. +10 ans d'expérience.">
+  <meta property="og:type" content="website">
+
+  <!-- Titres : WT Gothic si disponible, sinon Anton (gothique condensée). Textes : JetBrains Mono.
+       Polices auto-hébergées dans /fonts. -->
+  <link rel="preload" href="fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/JetBrainsMono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d4ff3f'/><text x='50' y='74' font-family='Impact,sans-serif' font-size='64' text-anchor='middle' fill='%230e0e0c'>MD</text></svg>">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__label">Voir</span></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="Accueil">MD<sup>©</sup></a>
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="#work"><span>01</span>Projets</a>
+      <a href="#about"><span>02</span>Profil</a>
+      <a href="#services"><span>03</span>Expertises</a>
+      <a href="#contact"><span>04</span>Contact</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="status"><i></i>Disponible — 2026</span>
+      <button class="theme-toggle" type="button" aria-label="Changer de thème">
+        <span class="theme-toggle__dot"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__top">
+        <p class="label">[ Product Designer ]</p>
+        <p class="label">Lille, FR — <span id="clock">--:--</span></p>
+      </div>
+
+      <h1 class="hero__title" aria-label="Matthieu Delapoterie">
+        <span class="line line--indent"><span class="line__inner">Matthieu<em>—</em></span></span>
+        <span class="line"><span class="line__inner">Delapoterie<span class="accent">.</span></span></span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__intro">
+          Je conçois des produits numériques <mark>utiles, clairs et désirables</mark>
+          depuis plus de 10 ans. De la recherche utilisateur au design system,
+          j'aide les équipes à transformer des problèmes complexes en expériences simples.
+        </p>
+        <div class="hero__stats">
+          <div><strong data-count="10">0</strong><span>+ ans<br>de métier</span></div>
+          <div><strong data-count="60">0</strong><span>+ produits<br>livrés</span></div>
+          <div><strong data-count="25">0</strong><span>clients &amp;<br>startups</span></div>
+        </div>
+        <a href="#work" class="scroll-cue" aria-label="Voir les projets">
+          <span>Scroll</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4v16m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Product Design</span><i>✦</i><span>UX Research</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Prototypage</span><i>✦</i><span>UI Design</span><i>✦</i><span>Stratégie produit</span><i>✦</i>
+        <span>Product Design</span><i>✦</i><span>UX Research</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Prototypage</span><i>✦</i><span>UI Design</span><i>✦</i><span>Stratégie produit</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ============ WORK ============ -->
+    <section class="section work" id="work">
+      <div class="section__head">
+        <p class="label">(01) — Projets sélectionnés</p>
+        <h2 class="section__title reveal">Travaux<br><span class="outline">récents</span></h2>
+      </div>
+
+      <ul class="projects">
+        <li class="project reveal" data-cursor>
+          <a href="#contact" class="project__link">
+            <div class="project__media" style="--c1:#d4ff3f;--c2:#1c1c19">
+              <div class="mock mock--app">
+                <div class="mock__bar"></div>
+                <div class="mock__row"></div><div class="mock__row mock__row--short"></div>
+                <div class="mock__grid"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="project__info">
+              <span class="project__num">01</span>
+              <h3 class="project__title">Néobanque — App mobile</h3>
+              <p class="project__tags">Fintech · iOS / Android · 2025</p>
+              <p class="project__desc">Refonte complète du parcours d'ouverture de compte : −38 % d'abandon, onboarding passé de 12 à 4 minutes.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="project reveal" data-cursor>
+          <a href="#contact" class="project__link">
+            <div class="project__media" style="--c1:#ff5b2e;--c2:#f1ede4">
+              <div class="mock mock--dash">
+                <div class="mock__side"></div>
+                <div class="mock__chart"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i><i style="--h:85%"></i><i style="--h:70%"></i><i style="--h:95%"></i></div>
+              </div>
+            </div>
+            <div class="project__info">
+              <span class="project__num">02</span>
+              <h3 class="project__title">Plateforme SaaS B2B</h3>
+              <p class="project__tags">Logistique · Web app · 2024</p>
+              <p class="project__desc">Dashboard temps réel pour 3 000 opérateurs d'entrepôt. Création d'un design system de 120 composants.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="project reveal" data-cursor>
+          <a href="#contact" class="project__link">
+            <div class="project__media" style="--c1:#7b6cff;--c2:#0e0e0c">
+              <div class="mock mock--ds">
+                <span>Aa</span>
+                <div class="mock__swatches"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="mock__buttons"><b></b><b></b></div>
+              </div>
+            </div>
+            <div class="project__info">
+              <span class="project__num">03</span>
+              <h3 class="project__title">Design System « Nord »</h3>
+              <p class="project__tags">Retail · Multi-marques · 2023</p>
+              <p class="project__desc">Un système unifié pour 6 marques et 14 équipes produit. Time-to-market divisé par deux.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="project reveal" data-cursor>
+          <a href="#contact" class="project__link">
+            <div class="project__media" style="--c1:#f1ede4;--c2:#2e5bff">
+              <div class="mock mock--phone">
+                <div class="mock__screen"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="project__info">
+              <span class="project__num">04</span>
+              <h3 class="project__title">E-santé — Téléconsultation</h3>
+              <p class="project__tags">Healthtech · Responsive · 2022</p>
+              <p class="project__desc">Parcours patient accessible RGAA AA, conçu avec des médecins et testé auprès de 80 patients.</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="section__head">
+        <p class="label">(02) — Profil</p>
+        <h2 class="section__title reveal">Design<br><span class="outline">&amp; intention</span></h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <p class="lead">
+            Basé à Lille, je suis Product Designer depuis plus d'une décennie.
+            J'ai commencé par le web, grandi avec le mobile et je conçois aujourd'hui
+            des plateformes complexes pour des startups comme pour des grands groupes.
+          </p>
+          <p>
+            Ma conviction : un bon produit naît d'une compréhension fine des gens qui l'utilisent
+            et d'une collaboration étroite avec le produit et la tech. Je travaille vite,
+            je prototype tôt, je mesure tout — et je garde toujours un œil sur le détail
+            qui rend une interface mémorable.
+          </p>
+        </div>
+
+        <ol class="timeline reveal">
+          <li>
+            <span class="timeline__date">2021 — Auj.</span>
+            <span class="timeline__role">Lead Product Designer</span>
+            <span class="timeline__place">Freelance &amp; conseil</span>
+          </li>
+          <li>
+            <span class="timeline__date">2018 — 2021</span>
+            <span class="timeline__role">Senior Product Designer</span>
+            <span class="timeline__place">Scale-up SaaS, Lille</span>
+          </li>
+          <li>
+            <span class="timeline__date">2015 — 2018</span>
+            <span class="timeline__role">UX / UI Designer</span>
+            <span class="timeline__place">Agence digitale, Lille</span>
+          </li>
+          <li>
+            <span class="timeline__date">2013 — 2015</span>
+            <span class="timeline__role">Web Designer</span>
+            <span class="timeline__place">Studio créatif</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="tools reveal">
+        <p class="label">Outils du quotidien</p>
+        <ul>
+          <li>Figma</li><li>FigJam</li><li>Protopie</li><li>Framer</li><li>Maze</li>
+          <li>Notion</li><li>Jira</li><li>HTML / CSS</li><li>Claude</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section services" id="services">
+      <div class="section__head">
+        <p class="label">(03) — Expertises</p>
+        <h2 class="section__title reveal">Ce que<br><span class="outline">je fais</span></h2>
+      </div>
+
+      <div class="accordion">
+        <details class="service reveal" open>
+          <summary>
+            <span class="service__num">/01</span>
+            <span class="service__title">Stratégie &amp; Discovery</span>
+            <span class="service__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="service__body">
+            <p>Ateliers, interviews utilisateurs, benchmark, cartographie des parcours. On aligne business, utilisateurs et tech avant d'ouvrir Figma.</p>
+            <ul><li>User research</li><li>Jobs-to-be-done</li><li>Design sprint</li><li>Roadmap produit</li></ul>
+          </div>
+        </details>
+
+        <details class="service reveal">
+          <summary>
+            <span class="service__num">/02</span>
+            <span class="service__title">UX &amp; Prototypage</span>
+            <span class="service__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="service__body">
+            <p>Architecture de l'information, wireframes et prototypes haute-fidélité testés rapidement avec de vrais utilisateurs.</p>
+            <ul><li>Wireframes</li><li>Prototypes interactifs</li><li>Tests utilisateurs</li><li>Accessibilité</li></ul>
+          </div>
+        </details>
+
+        <details class="service reveal">
+          <summary>
+            <span class="service__num">/03</span>
+            <span class="service__title">UI &amp; Design Systems</span>
+            <span class="service__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="service__body">
+            <p>Des interfaces soignées et des systèmes de design scalables, documentés et synchronisés avec le code.</p>
+            <ul><li>Design tokens</li><li>Bibliothèques Figma</li><li>Documentation</li><li>Handoff dev</li></ul>
+          </div>
+        </details>
+
+        <details class="service reveal">
+          <summary>
+            <span class="service__num">/04</span>
+            <span class="service__title">Coaching &amp; Leadership</span>
+            <span class="service__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="service__body">
+            <p>Structuration d'équipes design, mentorat de designers juniors, mise en place de rituels et de process DesignOps.</p>
+            <ul><li>DesignOps</li><li>Mentorat</li><li>Recrutement</li><li>Culture produit</li></ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <p class="label">(04) — Contact</p>
+      <h2 class="contact__title">
+        <span class="reveal">Un projet&nbsp;?</span>
+        <a href="mailto:mattdlptr@gmail.com" class="contact__mail reveal">Parlons-en<span class="arrow">↗</span></a>
+      </h2>
+      <div class="contact__grid">
+        <div>
+          <p class="label">E-mail</p>
+          <a href="mailto:mattdlptr@gmail.com" class="u-link">mattdlptr@gmail.com</a>
+        </div>
+        <div>
+          <p class="label">Réseaux</p>
+          <a href="https://www.linkedin.com/" class="u-link" target="_blank" rel="noopener">LinkedIn</a><br>
+          <a href="https://dribbble.com/" class="u-link" target="_blank" rel="noopener">Dribbble</a><br>
+          <a href="https://www.behance.net/" class="u-link" target="_blank" rel="noopener">Behance</a>
+        </div>
+        <div>
+          <p class="label">Localisation</p>
+          <p>Lille, Hauts-de-France<br>Remote &amp; sur site</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Matthieu Delapoterie</p>
+    <p>Conçu &amp; codé à Lille</p>
+    <a href="#top" class="u-link">Retour en haut ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
